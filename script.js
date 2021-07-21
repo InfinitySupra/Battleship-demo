@@ -1,4 +1,25 @@
 
+const audioHit = document.getElementById('audioHit');
+const audioMiss = document.getElementById('audioMiss');
+
+function a() {
+    audioHit.play();
+    setTimeout(function () {
+        audioHit.pause();
+        audioHit.currentTime = 450;
+    }, 1430);
+};
+
+function b() {
+    audioMiss.play();
+    setTimeout(function () {
+        audioMiss.pause();
+        audioMiss.currentTime = 400;
+    }, 1430);
+};
+
+
+
 // *dispalyMessageView from MessageArea
 
 let view = {
@@ -32,6 +53,7 @@ let model = {
             let ship = this.ships[i];
             let index = ship.locations.indexOf(guess);
             if (index >= 0) {
+                a();
                 ship.hits[index] = 'hit';
                 view.displayHit(guess);
                 view.displayMessage('HIT!');
@@ -44,6 +66,7 @@ let model = {
         }
         view.displayMiss(guess);
         view.displayMessage('You missed.');
+        b();
         return false;
     }, 
     isSunk: function (ship) {
